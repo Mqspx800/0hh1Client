@@ -5,9 +5,11 @@ import App from "./App";
 import apolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { url } from "./url";
+import { InMemoryCache } from "apollo-cache-inmemory";
 
 const client = new apolloClient({
-  uri: url
+  uri: url,
+  cache: new InMemoryCache()
 });
 
 ReactDOM.render(

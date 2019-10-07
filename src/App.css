@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+:root{
+  background: blanchedalmond;
+}
+
 .App-logo {
   height: 40vmin;
 }
@@ -19,4 +23,58 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+div {
+  line-height: 0;
+}
+
+.square {
+  max-width: 70px;
+  max-height: 70px;
+  padding: 2.5%;
+  color: red;
+  display: inline-block;
+  background: #fff5ee;
+  border: 5px solid #d3d3d3;
+  margin: 0 auto;
+}
+
+.square.fill-1 {
+  background: red;
+}
+
+.square.fill-2 {
+  background: #09d3ac;
+}
+
+.square:hover {
+  background: darkgray;
+}
+
+/* locked squares */
+.square.locked.fill-2 {
+  background: linear-gradient(rgba(0, 128, 0, 0.5), rgba(34, 139, 34, 0.5));
+}
+
+.square.square.locked.fill-1 {
+  background: linear-gradient(rgba(178, 34, 34, 0.5), rgba(178, 34, 34, 0.5));
+}
+
+/* Adjust border width of the board */
+.square:last-of-type {
+  border-right: 10px solid #d3d3d3;
+}
+
+.square:first-of-type {
+  border-left: 10px solid #d3d3d3;
+}
+
+.App div:first-child .square {
+  margin-top: 15%;
+  border-top: 10px solid #d3d3d3;
+}
+
+.App div:last-of-type .square {
+  border-bottom: 10px solid #d3d3d3;
 }
