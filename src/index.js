@@ -2,14 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import apolloClient from "apollo-boost";
+import { ApolloClient } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { url } from "./url";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import { createHttpLink } from "apollo-link-http";
 
-const client = new apolloClient({
-  uri: url,
-  cache: new InMemoryCache()
+
+const link = createHttpLink({
+  uri:url
+})
+
+const client = new ApolloClient({
+  link,
+  cache: new InMemoryCache(),
+  connectToDevTools: true
 });
 
 ReactDOM.render(

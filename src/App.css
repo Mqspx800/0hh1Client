@@ -40,17 +40,39 @@ div {
   margin: 0 auto;
 }
 
+
+
+
+.square.dupe{
+  border-color: blue;
+}
+.square.dupe:first-child{
+
+}
+
+
+
+/*Define square render color depending on value*/
 .square.fill-1 {
   background: red;
 }
 
 .square.fill-2 {
-  background: #09d3ac;
+  background: darkolivegreen;
 }
 
 .square:hover {
   background: darkgray;
 }
+
+.square:active:hover{
+  background: #282c34
+}
+
+
+
+
+
 
 /* locked squares */
 .square.locked.fill-2 {
@@ -60,6 +82,10 @@ div {
 .square.square.locked.fill-1 {
   background: linear-gradient(rgba(178, 34, 34, 0.5), rgba(178, 34, 34, 0.5));
 }
+
+
+
+
 
 /* Adjust border width of the board */
 .square:last-of-type {
