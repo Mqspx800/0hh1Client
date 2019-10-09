@@ -15,21 +15,26 @@ const clickTileMutation = gql`
       }
       dupeRow
       dupeCol
+      culpritsCoords{
+        x
+        y
+      }
     }
   }
 `;
 
 function Square(props) {
-  const { value, dupe, locked } = props;
+  const { value, dupe, locked, error } = props;
   const style = () => {
     let className = ["square"];
     if (locked) className.push("locked");
     if (dupe) className.push("dupe");
     className.push(`fill-${value || 0}`);
+    if (error) className.push(`error`);
     return className.join(" ");
   };
   const { x, y } = props.coords;
-  console.log("rendering");
+  //console.log(style())
   return (
     <Mutation
       mutation={clickTileMutation}
@@ -37,7 +42,7 @@ function Square(props) {
         cache,
         {
           data: {
-            clickOnTile: { board, dupeCol, dupeRow }
+            clickOnTile: { board, dupeCol, dupeRow, culpritsCoords }
           }
         }
       ) => {
@@ -47,9 +52,11 @@ function Square(props) {
         });
         //Deep clone of cache object
         let data = JSON.parse(JSON.stringify(localCache));
+        console.log(culpritsCoords)
         data.boardInit.colsAndRows[y][x] = board.colsAndRows[y][x];
         data.dupeRow = dupeRow;
         data.dupeCol = dupeCol;
+        data.culpritsCoords = culpritsCoords;
         cache.writeQuery({
           query: gameInitQuery,
           variables: { size: 6 },
@@ -60,8 +67,8 @@ function Square(props) {
       {clickOnTile => (
         <span
           onClick={() => {
-            if(!locked)
-            clickOnTile({ variables: { x, y } })}}
+            if (!locked) clickOnTile({ variables: { x, y } });
+          }}
           className={style()}
         ></span>
       )}

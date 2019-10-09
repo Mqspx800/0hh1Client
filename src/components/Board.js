@@ -14,6 +14,10 @@ export const gameInitQuery = gql`
     }
     dupeRow
     dupeCol
+    culpritsCoords {
+      x
+      y
+    }
   }
 `;
 
@@ -25,6 +29,7 @@ class Board extends React.Component {
           if (loading) return "Game Initilizing, please wait";
           if (error) return "an error occur...";
           const { locked, colsAndRows } = data.boardInit;
+          const { dupeRow, dupeCol, culpritsCoords } = data;
           return (
             <Fragment>
               {colsAndRows.map((row, y) => {
@@ -36,10 +41,13 @@ class Board extends React.Component {
                       );
                       let dupeR = false;
                       let dupeC = false;
-                      if (data.dupeRow) {
-                        dupeR = data.dupeRow.includes(y);
+                      if (dupeRow) {
+                        dupeR = dupeRow.includes(y);
                       }
-                      if (data.dupeCol) dupeC = data.dupeCol.includes(x);
+                      if (dupeCol) dupeC = dupeCol.includes(x);
+                      const error =
+                        culpritsCoords &&
+                        culpritsCoords.find(c => c.x === x && c.y === y);
                       return (
                         <Square
                           key={"col" + x}
@@ -47,6 +55,7 @@ class Board extends React.Component {
                           value={value}
                           dupe={dupeR || dupeC}
                           coords={{ x, y }}
+                          error={error}
                           onClick={this.clickOnTile}
                         />
                       );

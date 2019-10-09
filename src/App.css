@@ -40,12 +40,11 @@ div {
   margin: 0 auto;
 }
 
-
-
-
-.square.dupe{
-  border-color: indianred;
+.square.dupe,.square.error{
+  border-color: #F0E68C
+  ;
 }
+
 
 
 
