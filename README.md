@@ -26,6 +26,6 @@
 npm install
 npm run start
 ```
-- access in at http://localhost:3000
+- access at http://localhost:3000
 
 
