@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-:root{
+:root {
   background: blanchedalmond;
 }
 
@@ -29,26 +29,6 @@ div {
   line-height: 0;
 }
 
-.square {
-  max-width: 70px;
-  max-height: 70px;
-  padding: 2.5%;
-  color: red;
-  display: inline-block;
-  background: #fff5ee;
-  border: 5px solid #d3d3d3;
-  margin: 0 auto;
-}
-
-.square.dupe,.square.error{
-  border-color: #F0E68C
-  ;
-}
-
-
-
-
-
 /*Define square render color depending on value*/
 .square.fill-1 {
   background: red;
@@ -62,14 +42,9 @@ div {
   background: darkgray;
 }
 
-.square:active:hover{
-  background: #282c34
+.square:active:hover {
+  background: #282c34;
 }
-
-
-
-
-
 
 /* locked squares */
 .square.locked.fill-2 {
@@ -79,10 +54,6 @@ div {
 .square.square.locked.fill-1 {
   background: linear-gradient(rgba(178, 34, 34, 0.5), rgba(178, 34, 34, 0.5));
 }
-
-
-
-
 
 /* Adjust border width of the board */
 .square:last-of-type {
@@ -94,10 +65,26 @@ div {
 }
 
 .App div:first-child .square {
-  margin-top: 15%;
+  margin-top: 10em;
   border-top: 10px solid #d3d3d3;
 }
 
 .App div:last-of-type .square {
   border-bottom: 10px solid #d3d3d3;
+}
+
+.square {
+  max-width: 70px;
+  max-height: 70px;
+  padding: 2.5%;
+  color: red;
+  display: inline-block;
+  background: #fff5ee;
+  border: 5px solid #d3d3d3;
+  margin: 0 auto;
+}
+
+.square.dupe,
+.square.error {
+  border-color: #f0e68c;
 }

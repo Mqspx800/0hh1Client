@@ -24,7 +24,7 @@ export const gameInitQuery = gql`
 class Board extends React.Component {
   render() {
     return (
-      <Query query={gameInitQuery} variables={{ size: 6 }}>
+      <Query query={gameInitQuery} variables={{ size: 8 }}>
         {({ loading, error, data }) => {
           if (loading) return "Game Initilizing, please wait";
           if (error) return "an error occur...";
