@@ -15,7 +15,7 @@ const clickTileMutation = gql`
       }
       dupeRow
       dupeCol
-      culpritsCoords{
+      culpritsCoords {
         x
         y
       }
@@ -24,7 +24,7 @@ const clickTileMutation = gql`
 `;
 
 function Square(props) {
-  const { value, dupe, locked, error } = props;
+  const { value, dupe, locked, error, size } = props;
   const style = () => {
     let className = ["square"];
     if (locked) className.push("locked");
@@ -34,7 +34,6 @@ function Square(props) {
     return className.join(" ");
   };
   const { x, y } = props.coords;
-  //console.log(style())
   return (
     <Mutation
       mutation={clickTileMutation}
@@ -48,18 +47,17 @@ function Square(props) {
       ) => {
         const localCache = cache.readQuery({
           query: gameInitQuery,
-          variables: { size: 6 }
+          variables: { size }
         });
         //Deep clone of cache object
         let data = JSON.parse(JSON.stringify(localCache));
-        console.log(culpritsCoords)
         data.boardInit.colsAndRows[y][x] = board.colsAndRows[y][x];
         data.dupeRow = dupeRow;
         data.dupeCol = dupeCol;
         data.culpritsCoords = culpritsCoords;
         cache.writeQuery({
           query: gameInitQuery,
-          variables: { size: 6 },
+          variables: { size },
           data
         });
       }}

@@ -21,13 +21,57 @@ export const gameInitQuery = gql`
   }
 `;
 
+const BOARD_UPDATE_SUBSCRIPTION = gql`
+  subscription {
+    boardUpdated {
+      board {
+        colsAndRows
+        locked {
+          x
+          y
+        }
+      }
+      dupeCol
+      dupeRow
+      culpritsCoords{
+        x
+        y
+      }
+    }
+  }
+`;
+
 class Board extends React.Component {
+  _boardUpdateSubscription = subscribeToMore => {
+    subscribeToMore({
+      document: BOARD_UPDATE_SUBSCRIPTION,
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) return prev;
+        const {
+          boardUpdated:{board,dupeRow,dupeCol,culpritsCoords}
+        } = subscriptionData.data;
+
+        console.log(subscriptionData.data);
+
+        return Object.assign({}, prev, {
+          boardInit: board,
+          dupeCol,
+          dupeRow,
+          culpritsCoords,
+          ___typename: prev.boardInit.___typename
+        });
+      }
+    });
+  };
+
   render() {
+    const size = 8;
     return (
-      <Query query={gameInitQuery} variables={{ size: 8 }}>
-        {({ loading, error, data }) => {
+      <Query query={gameInitQuery} variables={{ size }}>
+        {({ loading, error, data, subscribeToMore }) => {
           if (loading) return "Game Initilizing, please wait";
           if (error) return "an error occur...";
+          this._boardUpdateSubscription(subscribeToMore);
           const { locked, colsAndRows } = data.boardInit;
           const { dupeRow, dupeCol, culpritsCoords } = data;
           return (
@@ -56,6 +100,7 @@ class Board extends React.Component {
                           dupe={dupeR || dupeC}
                           coords={{ x, y }}
                           error={error}
+                          size={size}
                           onClick={this.clickOnTile}
                         />
                       );
