@@ -10,7 +10,7 @@
 - React
 - Apollo client& graphQL
 
-## Features(in progress)
+## Features
 - Game init with 25% tile placed
 - All rule checker are implemnted
 - Instant illustration if there are any tiles is breaking the rule
