@@ -12,7 +12,7 @@
 
 ## Features
 - Game init with 25% tile placed
-- All rule checker are implemnted
+- All rule checker are implemented
 - Instant illustration if there are any tiles is breaking the rule
 - reset button
 - Subscription to real time board update.
