@@ -2,11 +2,9 @@
 - 0hh1 game
 
 ## Game rules:
-- Player can place red or green tiles on the board
-- No more than 3 consecutive tiles to be the same color
-- In the same column or row, number of each color of tiles should not exceed 50% of the column length(4 red in the same row of a 6x6 board is not allowed) 
-- No 2 columns or rows should be identical
-- If the board is filled 100%, game finished
+1. Three red tiles or three blue tiles next to each other in a row or column isn't allowed
+2. A full row or column must have as many blue tiles as it has red ones.
+3. No two rows are the same. No two columns either.
 
 ## Technologies
 - React
@@ -16,10 +14,15 @@
 - Game init with 25% tile placed
 - All rule checker are implemnted
 - Instant illustration if there are any tiles is breaking the rule
+- reset button
+- Subscription to real time board change.
+
+![Demo](/public/demo.gif?raw=true "Demo")
 
 ### In progress
 - Display game progress
-- Optimize game connection with websocket in subscription pattern
+- Implement different game mode
+- Implement difficulty level(board size)
 
 ## Entry point
 ```
