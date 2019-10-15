@@ -81,7 +81,7 @@ class Board extends React.Component {
         >
           {gameinit => (
             <button className="startButton" onClick={gameinit}>
-              <span></span>
+              <span ></span>
             </button>
           )}
         </Mutation>
