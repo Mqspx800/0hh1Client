@@ -3,7 +3,7 @@
 }
 
 :root {
-  background: blanchedalmond;
+  background: black;
 }
 
 .App-logo {
@@ -35,15 +35,15 @@ div {
 }
 
 .square.fill-2 {
-  background: darkolivegreen;
+  background: #2ecc71;
 }
 
 .square:hover {
-  background: darkgray;
 }
 
-.square:active:hover {
-  background: #282c34;
+.square:hover:active {
+  box-shadow: inset 0 -5px darkgray;
+  transform: translateY(4px);
 }
 
 /* locked squares */
@@ -55,36 +55,90 @@ div {
   background: linear-gradient(rgba(178, 34, 34, 0.5), rgba(178, 34, 34, 0.5));
 }
 
-/* Adjust border width of the board */
+/* Adjust border width of the board
 .square:last-of-type {
-  border-right: 10px solid #d3d3d3;
+  border-right: 10px solid black;
 }
 
 .square:first-of-type {
-  border-left: 10px solid #d3d3d3;
+  border-left: 10px solid black;
 }
 
-.App div:first-child .square {
-  margin-top: 10em;
-  border-top: 10px solid #d3d3d3;
-}
+
 
 .App div:last-of-type .square {
-  border-bottom: 10px solid #d3d3d3;
+  border-bottom: 10px solid black;
+} */
+
+.App div:first-of-type .square {
+  margin-top: 3em;
 }
 
 .square {
   max-width: 70px;
   max-height: 70px;
   padding: 2.5%;
-  color: red;
   display: inline-block;
-  background: #fff5ee;
-  border: 5px solid #d3d3d3;
+  background: darkgray;
+  border: 5px solid black;
   margin: 0 auto;
+  border-radius: 23px;
+  box-shadow: inset 0 -6px 5px 1px darkgray;
+  overflow: hidden;
+  position: relative;
 }
+
 
 .square.dupe,
 .square.error {
   border-color: #f0e68c;
 }
+
+
+.square::before {
+  content: "";
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 20%;
+  height: 20%;
+  background: #f39c12;
+  transition: 0.5s;
+  transform: scale(0);
+  border-radius: 50%;
+}
+
+.square:hover::before {
+  transform: scale(1);
+  box-shadow: 0 0 2px 3px #f1c40f
+}
+
+.startButton {
+  margin-top: 10px;
+  padding: 1em 3em;
+  display: inline-block;
+  border-radius: 15px;
+  background: lightskyblue;
+  color: #fff;
+  box-shadow: 0 6px 2px 1px #666;
+}
+
+.startButton:focus {
+  outline: 0;
+}
+
+.startButton span::after {
+  content: "\21BA";
+  font-size: 500%;
+}
+
+
+.startButton:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+  color: aquamarine;
+}
+
+
+
+
