@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import { ApolloClient } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-import { url } from "./url";
+import { url, ws } from "./url";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { createHttpLink } from "apollo-link-http";
 import { WebSocketLink } from "apollo-link-ws";
@@ -16,7 +16,7 @@ const httplink = createHttpLink({
 });
 
 const wsLink = new WebSocketLink({
-  uri: 'ws://localhost:4000/graphql',
+  uri: ws,
   options: {
     reconnect: true
   }

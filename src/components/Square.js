@@ -1,17 +1,13 @@
 import React from "react";
 import gql from "graphql-tag";
 import { Mutation, withApollo } from "react-apollo";
-import { gameInitQuery } from "./Board";
+import { gameQuery } from "./Board";
 
 const clickTileMutation = gql`
   mutation clickOnTile($x: Int!, $y: Int!) {
     clickOnTile(x: $x, y: $y) {
       board {
         colsAndRows
-        locked {
-          x
-          y
-        }
       }
       dupeRow
       dupeCol
@@ -24,7 +20,7 @@ const clickTileMutation = gql`
 `;
 
 function Square(props) {
-  const { value, dupe, locked, error, size } = props;
+  const { value, dupe, locked, error } = props;
   const style = () => {
     let className = ["square"];
     if (locked) className.push("locked");
@@ -46,18 +42,16 @@ function Square(props) {
         }
       ) => {
         const localCache = cache.readQuery({
-          query: gameInitQuery,
-          variables: { size }
+          query: gameQuery
         });
         //Deep clone of cache object
         let data = JSON.parse(JSON.stringify(localCache));
-        data.boardInit.colsAndRows[y][x] = board.colsAndRows[y][x];
+        data.board.colsAndRows[y][x] = board.colsAndRows[y][x];
         data.dupeRow = dupeRow;
         data.dupeCol = dupeCol;
         data.culpritsCoords = culpritsCoords;
         cache.writeQuery({
-          query: gameInitQuery,
-          variables: { size },
+          query: gameQuery,
           data
         });
       }}
