@@ -15,7 +15,7 @@
 - All rule checker are implemnted
 - Instant illustration if there are any tiles is breaking the rule
 - reset button
-- Subscription to real time board change.
+- Subscription to real time board update.
 
 ![Demo](/public/demo.gif?raw=true "Demo")
 
